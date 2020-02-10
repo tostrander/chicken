@@ -15,10 +15,24 @@ require("vendor/autoload.php");
 //Instantiate F3
 $f3 = Base::instance();
 
+//Instantiate controller object
+$controller = new ChickenController($f3);
+
 //Define a default route
 $f3->route('GET /', function() {
-    $view = new Template();
-    echo $view->render('views/all-about-chickens.html');
+
+    //global $controller;
+    //$controller->home();
+
+    $GLOBALS['controller']->home();
+
+});
+
+//Define another route
+$f3->route('GET /eggs', function() {
+
+    $GLOBALS['controller']->eggs();
+
 });
 
 //Run F3
